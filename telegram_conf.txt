@@ -1,0 +1,3 @@
+[telegram]
+token = {YOUR BOT API KEY}
+chat_id = {RECEPIANT TELEGRAM ID}
