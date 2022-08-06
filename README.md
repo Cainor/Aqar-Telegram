@@ -20,7 +20,7 @@ Settings are in the beginning of the "Almalqa.py" file:
 category = 1
 city_id = 21 #Riyadh
 direction_id = 4 # 1-South 3-East 4-North 6-West 7-Middle (Maybe)
-district_id = 574 #570 Almalqa
+district_id = 570 #570 Almalqa
 rent_period = 3 #Yearly
 ```
 
