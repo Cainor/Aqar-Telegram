@@ -15,7 +15,7 @@ chat_id = YOUR ID HERE
 ```
 
 ## Aqar settings
-Settings are in the beginning of the "aqar.py" file:
+Settings are in the beginning of the "Almalqa.py" file:
 ```
 category = 1
 city_id = 21 #Riyadh
