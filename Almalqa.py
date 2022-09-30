@@ -28,21 +28,21 @@ burp0_url = "https://sa.aqar.fm:443/graphql"
 burp0_json={"operationName": "findListings", "query": "query findListings($size: Int, $from: Int, $sort: SortInput, $where: WhereInput, $polygon: [LocationInput!]) {\n  Web {\n    find(size: $size, from: $from, sort: $sort, where: $where, polygon: $polygon) {\n      ...WebResults\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment WebResults on WebResults {\n  listings {\n    user_id\n    id\n    uri\n    title\n    price\n    content\n    imgs\n    refresh\n    category\n    beds\n    livings\n    wc\n    area\n    type\n    street_width\n    age\n    last_update\n    street_direction\n    ketchen\n    ac\n    furnished\n    location {\n      lat\n      lng\n      __typename\n    }\n    path\n    user {\n      review\n      img\n      name\n      phone\n      iam_verified\n      rega_id\n      __typename\n    }\n    native {\n      logo\n      title\n      image\n      description\n      external_url\n      __typename\n    }\n    rent_period\n    city\n    district\n    width\n    length\n    advertiser_type\n    create_time\n    __typename\n  }\n  total\n  __typename\n}\n", "variables": {"from": 0, "size": 100, "sort": {"create_time": "desc"}, "where": {"category": {"eq": category}, "city_id": {"eq": city_id}, "direction_id": {"eq": direction_id}, "district_id": {"eq": district_id}, "rent_period": {"eq": rent_period}}}}
 
 
-checkFirst = 0
+addedTime = 0
 def CheckAqar():
     change = False
     result = ""
-    global checkFirst
+    global addedTime
     print("Checking ...")
     
     #Find current posts
-    if(checkFirst == 0):
+    if(addedTime == 0):
         print("Getting the current listing")
         res = requests.post(burp0_url, headers=burp0_headers, cookies=burp0_cookies, json=burp0_json).json()
         res = res['data']['Web']['find']['listings']
         res = sorted(res, key=lambda x : x['create_time'], reverse=True)
-        checkFirst = res[0]["create_time"]
-        print("Last post was on: ",  datetime.datetime.fromtimestamp(checkFirst))
+        addedTime = res[0]["create_time"]
+        print("Last post was on: ",  datetime.datetime.fromtimestamp(addedTime))
         print("https://sa.aqar.fm/"+res[0]["path"])
         return False,"None"
 
@@ -51,8 +51,9 @@ def CheckAqar():
         res = requests.post(burp0_url, headers=burp0_headers, cookies=burp0_cookies, json=burp0_json).json()
         res = res['data']['Web']['find']['listings']
         res = sorted(res, key=lambda x : x['create_time'], reverse=True)
-        if(res[0]["create_time"] > checkFirst):
+        if(res[0]["create_time"] > addedTime):
             print("newly added")
+            addedTime = res[0]["create_time"]
             change = True
             result = "Almalqa -- https://sa.aqar.fm/"+res[0]["path"]
         return change,result
