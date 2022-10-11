@@ -14,6 +14,11 @@ token = YOUR TOKEN HERE
 chat_id = YOUR ID HERE
 ```
 
+## Install Requirements
+```
+python -m pip install -r requirments.txt
+```
+
 ## Aqar settings
 Settings are in the beginning of the "Almalqa.py" file:
 ```
