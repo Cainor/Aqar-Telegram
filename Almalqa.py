@@ -68,6 +68,9 @@ def main():
                 telegram_send.send(messages=["New rentals in: \r\n "+result],conf="telegram_conf.txt")
                 
             sleep(timeToSleep)
+    except BadRequest:
+        print("ERROR: Chat ID not found. Please make sure to speak with the bot to activate it.")
+        exit()
     except:
         telegram_send.send(messages=["Something went wrong :\\"],conf="telegram_conf.txt")
         exit()
