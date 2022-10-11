@@ -61,6 +61,7 @@ def CheckAqar():
 
 def main():
     try:
+        telegram_send.send(messages=["Eyes on the prize.\nGood luck!\n-Cainor"],conf="telegram_conf.txt")
         while(True):
             #Check Aqar
             change, result = CheckAqar()
