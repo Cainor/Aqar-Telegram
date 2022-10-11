@@ -9,6 +9,8 @@ import requests
 import json
 from time import sleep
 import datetime
+from telegram.error import BadRequest
+
 
 
 timeToSleep = 60*2
