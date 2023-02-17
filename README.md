@@ -18,6 +18,16 @@ chat_id = YOUR ID HERE
 ```
 python -m pip install -r requirments.txt
 ```
+A user faced an issue with importing "telegram-send"
+```
+ImportError: cannot import name 'MAX_MESSAGE_LENGTH' from 'telegram.constants'
+```
+
+The solution is to download an older version of "python-telegram-bot" using the below command:
+```
+python -m pip install "python-telegram-bot==13.5"
+```
+
 
 ## Aqar settings
 Settings are in the beginning of the "Almalqa.py" file:
